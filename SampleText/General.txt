@@ -1,0 +1,8 @@
+    this is a general     text     file      with some typical input
+nothing fancy in here but some lines of text
+1 2 3
+Those are numbers
+Those those tHoSe th0se
+THOOOOOOOOOSE
+the the the the the the the the the the
+That was  alot of the's
