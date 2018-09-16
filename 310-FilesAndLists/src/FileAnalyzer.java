@@ -9,19 +9,27 @@ public class FileAnalyzer {
 	private File file;
 	private String fileAdress;
 	private ArrayList<String> tokenAr;
+	private ArrayList<String> lineAr;
 	
 	public FileAnalyzer() {}
 	
 	public FileAnalyzer(String fileAdress) {
 		this.fileAdress = fileAdress;
 		this.file = new File(fileAdress);
-		this.tokenAr = fileToAr(this.file);
+		this.lineAr = fileToAr(this.file);
+		this.tokenAr = new ArrayList<String>();
+		for(String line: lineAr)
+			tokenAr.addAll(lineToAr(line));
+		
 	}
 	
 	public FileAnalyzer(File file) {
 		this.fileAdress = file.getPath();
 		this.file = file;
-		this.tokenAr = fileToAr(this.file);
+		this.lineAr = fileToAr(this.file);
+		this.tokenAr = new ArrayList<String>();
+		for(String line: lineAr)
+			tokenAr.addAll(lineToAr(line));
 	}
 
 	public File getFile() {
@@ -31,7 +39,10 @@ public class FileAnalyzer {
 	public void setFile(File file) {
 		this.fileAdress = file.getPath();
 		this.file = file;
-		this.tokenAr = fileToAr(this.file);
+		this.lineAr = fileToAr(this.file);
+		this.tokenAr = new ArrayList<String>();
+		for(String line: lineAr)
+			tokenAr.addAll(lineToAr(line));
 	}
 
 	public String getFileAdress() {
@@ -41,28 +52,33 @@ public class FileAnalyzer {
 	public void setFileAdress(String fileAdress) {
 		this.fileAdress = fileAdress;
 		this.file = new File(fileAdress);
-		this.tokenAr = fileToAr(this.file);
+		this.lineAr = fileToAr(this.file);
+		this.tokenAr = new ArrayList<String>();
+		for(String line: lineAr)
+			tokenAr.addAll(lineToAr(line));
 	}
 	
 	public void printArray() {
+		for(String line: lineAr)
+			System.out.println(line);
 		for(String token: tokenAr)
 			System.out.println(token);
 	}
 	
 	/***
-	 * Converts a file into an ArrayList of unsorted cleaned tokens.
+	 * Converts a file into an ArrayList of unsorted lines of text.
 	 * @see lineToArray() for more information 
 	 * @param file
 	 * @return arrayList of tokens
 	 */
 	private ArrayList<String> fileToAr(File file) {
-		ArrayList<String> tokens = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<String>();
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader(file));
 			String line = br.readLine();
 			while(line != null) {
-				tokens.addAll(lineToAr(line));
+				lines.add(line);
 				line = br.readLine();
 			}
 		} catch (FileNotFoundException e) {
@@ -70,7 +86,7 @@ public class FileAnalyzer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return tokens;
+		return lines;
 	}
 	
 	/***
@@ -84,12 +100,6 @@ public class FileAnalyzer {
 		ArrayList<String> tokenArList = new ArrayList<String>();
 		String[] tokenAr = text.split("\\s+");
 		tokenArList.addAll(cleanTokenArray(tokenAr));
-		
-		for(String token: tokenArList) {
-			System.out.println(token);
-		}
-		
-		
 		return tokenArList;
 	}
 	
@@ -109,4 +119,35 @@ public class FileAnalyzer {
 		return cleanedTokenAr;
 	}
 	
+	public String lengthOfLongestLineInFile() {
+		return "NEED TO IMPLEMENT";
+	}
+	
+	public String averageLineLength() {
+		return "NEED TO IMPLEMENT";
+	}
+	
+	public String numberOfUniqueTokens(boolean caseSensative) {
+		return "NEED TO IMPLEMENT";
+	}
+	
+	public String numberOfAllTokens() {
+		return "NEED TO IMPLEMENT";
+	}
+	
+	public String[] mostFrequentlyOccuringTokens() {
+		return new String[] {"NEED TO IMPLEMENT"};
+	}
+	
+	public String[] countOfMostFrequentlyOccuringTokens() {
+		return new String[] {"NEED TO IMPLEMENT"};
+	}
+	
+	public String[][] tenMostFrequentlyOccuringTokens() {
+		return new String[][] {{"NEED TO IMPLEMENT", "0"}};
+	}
+	
+	public String[][] tenLeastFrequentlyOccuringTokens() {
+		return new String[][] {{"NEED TO IMPLEMENT", "0"}};
+	}
 }
